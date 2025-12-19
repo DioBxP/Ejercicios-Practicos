@@ -1,7 +1,16 @@
 """
+
+Materia: Estructura de Datos
+Tema: LISTA SIMPLEMENTE ENLAZADA
+Estudiante: Diocles Miguel Bacusoy Piguave
+Curso: " C " 3er
+Fecha: 19/12/2025
+
+"""
+
+"""
 EJERCICIO 1: Contar elementos
-Dificultad: 🟢 Básico
-Tiempo estimado: 10 minutos
+Dificultad: Básico
 
 Implementa un método count(elem) en SLinkedList que cuente cuántas veces
 aparece un elemento en la lista.
@@ -14,46 +23,101 @@ Ejemplo:
 
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        El head apunta a None cuando la lista no tiene elementos.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo de la lista.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista no está vacía, se recorre la lista
+            hasta llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo creado.
+            """
             actual.next = nuevo
 
     def count(self, elem):
+        """
+        Cuenta cuántas veces aparece un elemento en la lista.
+
+        Se recorre la lista nodo por nodo comparando el dato
+        de cada nodo con el elemento buscado. Cada coincidencia
+        incrementa el contador.
+        """
         contador = 0
         actual = self.head
 
         while actual:
+            """
+            Se verifica si el dato del nodo actual coincide
+            con el elemento que se desea contar.
+            """
             if actual.dato == elem:
                 contador += 1
+
+            """
+            Se avanza al siguiente nodo de la lista.
+            """
             actual = actual.next
 
+        """
+        Se retorna el número total de ocurrencias encontradas.
+        """
         return contador
 
+
+# ---------------- CASOS DE PRUEBA ----------------
+
 lista = SLinkedList()
+
+"""
+Se agregan elementos a la lista para realizar las pruebas.
+"""
 for x in [0, 2, 3, 2, 4, 2]:
     lista.agregar(x)
 
+"""
+Pruebas del método count:
+- El número 2 aparece tres veces
+- El número 5 no aparece en la lista
+"""
 print(lista.count(2))  
 print(lista.count(5))  
 
+
+
 """
 EJERCICIO 2: Obtener elemento por índice
-Dificultad: 🟢 Básico
-Tiempo estimado: 15 minutos
+Dificultad: Básico
 
 Implementa un método get(index) que retorne el elemento en la posición index.
 
@@ -63,54 +127,110 @@ Ejemplo:
     lista.get(2)   # Retorna: 'C'
     lista.get(10)  # Lanza: IndexError
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo de la lista.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista contiene elementos, se recorre hasta
+            llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo creado.
+            """
             actual.next = nuevo
 
     def get(self, index):
+        """
+        Retorna el elemento ubicado en la posición indicada
+        por el índice.
+
+        Lanza IndexError si el índice es negativo o si está
+        fuera del rango de la lista.
+        """
         if index < 0:
+            """
+            Un índice negativo no es válido.
+            """
             raise IndexError("Índice fuera de rango")
 
         actual = self.head
         contador = 0
 
         while actual:
+            """
+            Se recorre la lista comparando el contador con
+            el índice solicitado.
+            """
             if contador == index:
                 return actual.dato
+
+            """
+            Se avanza al siguiente nodo e incrementa el contador.
+            """
             actual = actual.next
             contador += 1
 
-        # Si se terminó la lista y no se encontró el índice
+        """
+        Si se recorre toda la lista sin encontrar el índice,
+        se lanza la excepción correspondiente.
+        """
         raise IndexError("Índice fuera de rango")
 
+
+# ---------------- CASOS DE PRUEBA ----------------
+
 lista = SLinkedList()
+
+"""
+Se agregan elementos a la lista para realizar las pruebas.
+"""
 for x in ['A', 'B', 'C', 'D']:
     lista.agregar(x)
 
-print(lista.get(0))   # 'A'
-print(lista.get(2))   # 'C'
-print(lista.get(10))  # IndexError
+"""
+Pruebas del método get:
+"""
+print(lista.get(0))  
+print(lista.get(2))   
+print(lista.get(10))  
+
+
 
 """
 EJERCICIO 3: Encontrar índice de elemento
-Dificultad: 🟢 Básico
-Tiempo estimado: 15 minutos
+Dificultad: Básico
 
 Implementa un método index_of(elem) que retorne el índice de la primera
 ocurrencia del elemento, o -1 si no existe.
@@ -121,55 +241,103 @@ Ejemplo:
     lista.index_of('D')  # Retorna: 4
     lista.index_of('Z')  # Retorna: -1
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Guarda el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo de la lista.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista tiene elementos, se recorre hasta
+            llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo creado.
+            """
             actual.next = nuevo
 
     def index_of(self, elem):
+        """
+        Retorna el índice de la primera ocurrencia del elemento
+        buscado dentro de la lista.
+
+        Si el elemento no existe, retorna -1.
+        """
         actual = self.head
         indice = 0
 
         while actual:
+            """
+            Se compara el dato del nodo actual con el elemento
+            buscado. Si coinciden, se retorna el índice actual.
+            """
             if actual.dato == elem:
                 return indice
+
+            """
+            Se avanza al siguiente nodo y se incrementa el índice.
+            """
             actual = actual.next
             indice += 1
 
+        """
+        Si se recorre toda la lista y no se encuentra el elemento,
+        se retorna -1.
+        """
         return -1
 
-class Nodo:
-    def __init__(self, dato):
-        self.dato = dato
-        self.next = None
+
+# ---------------- CASOS DE PRUEBA ----------------
 
 lista = SLinkedList()
+
+"""
+Se agregan elementos a la lista para realizar las pruebas.
+"""
 for x in ['A', 'B', 'C', 'B', 'D']:
     lista.agregar(x)
 
-print(lista.index_of('B'))  # 1
-print(lista.index_of('D'))  # 4
-print(lista.index_of('Z'))  # -1
+"""
+Pruebas del método index_of:
+"""
+print(lista.index_of('B'))  
+print(lista.index_of('D')) 
+print(lista.index_of('Z'))  
+
+
 
 """
 EJERCICIO 4: Lista a array
-Dificultad: 🟢 Básico
-Tiempo estimado: 10 minutos
+Dificultad: Básico
 
 Implementa un método to_list() que convierta la lista enlazada a una
 lista de Python (array).
@@ -178,46 +346,94 @@ Ejemplo:
     linked_list = SLinkedList con [1, 2, 3, 4]
     linked_list.to_list()  # Retorna: [1, 2, 3, 4]
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo de la lista.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista contiene elementos, se recorre hasta
+            llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo creado.
+            """
             actual.next = nuevo
 
     def to_list(self):
+        """
+        Convierte la lista enlazada en una lista de Python.
+
+        Recorre la lista nodo por nodo y agrega cada dato
+        al arreglo resultante.
+        """
         resultado = []
         actual = self.head
 
         while actual:
+            """
+            Se añade el dato del nodo actual a la lista
+            y se avanza al siguiente nodo.
+            """
             resultado.append(actual.dato)
             actual = actual.next
 
+        """
+        Se retorna la lista de Python con todos los elementos.
+        """
         return resultado
 
+
+# ---------------- CASOS DE PRUEBA ----------------
+
 linked_list = SLinkedList()
+
+"""
+Se agregan elementos a la lista para realizar las pruebas.
+"""
 for x in [1, 2, 3, 4]:
     linked_list.agregar(x)
 
-print(linked_list.to_list())  # [1, 2, 3, 4]
+"""
+Prueba del método to_list:
+"""
+print(linked_list.to_list())  
+
+
 
 """
 EJERCICIO 5: Limpiar lista
-Dificultad: 🟢 Básico
-Tiempo estimado: 5 minutos
+Dificultad: Básico
 
 Implementa un método clear() que elimine todos los elementos de la lista.
 
@@ -229,42 +445,91 @@ Ejemplo:
 
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Guarda el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
-        self.head = None
-        self.size = 0   # opcional, pero útil
-
-    def agregar(self, dato):
-        nuevo = Nodo(dato)
-        if not self.head:
-            self.head = nuevo
-        else:
-            actual = self.head
-            while actual.next:
-                actual = actual.next
-            actual.next = nuevo
-        self.size += 1
-
-    def clear(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        El atributo size permite conocer la cantidad de elementos.
+        """
         self.head = None
         self.size = 0
 
+    def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada
+        y actualiza el tamaño de la lista.
+        """
+        nuevo = Nodo(dato)
+
+        if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo.
+            """
+            self.head = nuevo
+        else:
+            """
+            Si la lista contiene elementos, se recorre hasta
+            el último nodo.
+            """
+            actual = self.head
+            while actual.next:
+                actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo.
+            """
+            actual.next = nuevo
+
+        """
+        Se incrementa el tamaño de la lista.
+        """
+        self.size += 1
+
+    def clear(self):
+        """
+        Elimina todos los elementos de la lista enlazada.
+
+        Para lograrlo, se elimina la referencia al primer nodo
+        y se reinicia el tamaño de la lista.
+        """
+        self.head = None
+        self.size = 0
+
+
+# ---------------- CASOS DE PRUEBA ----------------
+
 lista = SLinkedList()
+
+"""
+Se agregan elementos a la lista para realizar las pruebas.
+"""
 for x in [1, 2, 3, 4, 5]:
     lista.agregar(x)
 
+"""
+Se limpia completamente la lista.
+"""
 lista.clear()
 
-print(lista.size)  # 0
+"""
+Prueba del método clear:
+"""
+print(lista.size)  
+
+
 
 """
 EJERCICIO 6: Invertir lista
-Dificultad: 🟡 Intermedio
-Tiempo estimado: 25 minutos
+Dificultad: Intermedio
 
 Implementa un método reverse() que invierta el orden de los elementos
 EN LA MISMA LISTA (no crear una nueva).
@@ -276,51 +541,127 @@ Ejemplo:
 
 Pista: Necesitas cambiar los punteros next de cada nodo.
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
         self.size = 0
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista contiene elementos, se recorre hasta
+            llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo.
+            """
             actual.next = nuevo
+
+        """
+        Se incrementa el tamaño de la lista.
+        """
         self.size += 1
 
     def reverse(self):
+        """
+        Invierte el orden de los nodos de la lista enlazada
+        modificando los punteros next de cada nodo.
+
+        No se crea una nueva lista, la inversión se realiza
+        directamente sobre la lista original.
+        """
         anterior = None
         actual = self.head
 
         while actual:
-            siguiente = actual.next   # guardar referencia
-            actual.next = anterior    # invertir puntero
-            anterior = actual         # avanzar anterior
-            actual = siguiente        # avanzar actual
+            """
+            Se guarda la referencia al siguiente nodo para
+            no perder la lista original.
+            """
+            siguiente = actual.next
 
+            """
+            Se invierte el puntero del nodo actual para que
+            apunte al nodo anterior.
+            """
+            actual.next = anterior
+
+            """
+            Se avanza el puntero anterior al nodo actual.
+            """
+            anterior = actual
+
+            """
+            Se avanza al siguiente nodo de la lista original.
+            """
+            actual = siguiente
+
+        """
+        Al finalizar el recorrido, el puntero 'anterior'
+        queda apuntando al nuevo primer nodo de la lista,
+        por lo que se actualiza el head.
+        """
         self.head = anterior
 
+
+# ---------------- CASOS DE PRUEBA ----------------
+
 lista = SLinkedList()
+
+"""
+Se agregan elementos a la lista para realizar las pruebas.
+"""
 for x in [1, 2, 3, 4, 5]:
     lista.agregar(x)
 
+"""
+Se invierte la lista enlazada.
+"""
 lista.reverse()
-print(lista)
+
+"""
+Prueba del método reverse.
+"""
+actual = lista.head
+while actual:
+    print(actual.dato, end=" -> ")
+    actual = actual.next
+print("None")
+
+
 
 """
 EJERCICIO 7: Detectar ciclo
-Dificultad: 🟡 Intermedio
-Tiempo estimado: 30 minutos
+Dificultad: Intermedio
 
 Implementa un método has_cycle() que detecte si la lista tiene un ciclo
 (un nodo apunta a un nodo anterior, creando un bucle infinito).
@@ -334,49 +675,100 @@ Ejemplo:
     lista normal: 1 → 2 → 3 → None (retorna False)
     lista con ciclo: 1 → 2 → 3 → (vuelve a 2) (retorna True)
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista contiene elementos, se recorre hasta
+            llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo.
+            """
             actual.next = nuevo
 
     def has_cycle(self):
+        """
+        Detecta si la lista enlazada contiene un ciclo
+        utilizando el algoritmo de Floyd (tortuga y liebre).
+
+        Retorna True si existe un ciclo, False en caso contrario.
+        """
         lento = self.head
         rapido = self.head
 
         while rapido and rapido.next:
-            lento = lento.next           # 1 paso
-            rapido = rapido.next.next    # 2 pasos
+            """
+            El puntero lento avanza un nodo a la vez.
+            """
+            lento = lento.next
 
+            """
+            El puntero rápido avanza dos nodos a la vez.
+            """
+            rapido = rapido.next.next
+
+            """
+            Si ambos punteros se encuentran, existe un ciclo.
+            """
             if lento == rapido:
                 return True
 
+        """
+        Si el puntero rápido llega a None, no existe un ciclo.
+        """
         return False
 
-# Lista normal
+
+# ---------------- CASOS DE PRUEBA ----------------
+
+"""
+Prueba 1: Lista sin ciclo
+"""
 lista1 = SLinkedList()
 for x in [1, 2, 3]:
     lista1.agregar(x)
 
-print(lista1.has_cycle())  # False
+print(lista1.has_cycle()) 
 
 
-# Lista con ciclo
+"""
+Prueba 2: Lista con ciclo
+"""
 lista2 = SLinkedList()
+
 n1 = Nodo(1)
 n2 = Nodo(2)
 n3 = Nodo(3)
@@ -384,14 +776,15 @@ n3 = Nodo(3)
 lista2.head = n1
 n1.next = n2
 n2.next = n3
-n3.next = n2   # ciclo
+n3.next = n2  
 
-print(lista2.has_cycle())  # True
+print(lista2.has_cycle()) 
+
+
 
 """
 EJERCICIO 8: Encontrar el medio
-Dificultad: 🟡 Intermedio
-Tiempo estimado: 20 minutos
+Dificultad: Intermedio
 
 Implementa un método get_middle() que retorne el elemento del medio de la lista.
 Si hay número par de elementos, retorna el segundo del medio.
@@ -405,58 +798,111 @@ Ejemplo:
     [1, 2, 3, 4, 5] → retorna 3
     [1, 2, 3, 4] → retorna 3 (segundo del medio)
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista contiene elementos, se recorre hasta
+            llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo.
+            """
             actual.next = nuevo
 
     def get_middle(self):
+        """
+        Retorna el elemento que se encuentra en la mitad
+        de la lista enlazada.
+
+        Si la lista tiene un número par de elementos,
+        se retorna el segundo elemento del medio.
+        """
+        if not self.head:
+            """
+            Si la lista está vacía, no existe elemento medio.
+            """
+            return None
+
         lento = self.head
         rapido = self.head
 
-        if not self.head:  # Si la lista está vacía
-            return None
-
         while rapido and rapido.next:
+            """
+            El puntero lento avanza un nodo.
+            """
             lento = lento.next
+
+            """
+            El puntero rápido avanza dos nodos.
+            """
             rapido = rapido.next.next
 
-        return lento.dato  # Cuando el rápido llega al final, el lento está en el medio
+        """
+        Cuando el puntero rápido llega al final de la lista,
+        el puntero lento se encuentra en el nodo medio.
+        """
+        return lento.dato
 
-# Lista con número impar de elementos
+
+# ---------------- CASOS DE PRUEBA ----------------
+
+"""
+Prueba 1: Lista con número impar de elementos
+"""
 lista1 = SLinkedList()
 for x in [1, 2, 3, 4, 5]:
     lista1.agregar(x)
 
-print(lista1.get_middle())  # 3
+print(lista1.get_middle())  
 
 
-# Lista con número par de elementos
+"""
+Prueba 2: Lista con número par de elementos
+"""
 lista2 = SLinkedList()
 for x in [1, 2, 3, 4]:
     lista2.agregar(x)
 
-print(lista2.get_middle())  # 3 (el segundo del medio)
+print(lista2.get_middle())  
+
+
 
 """
 EJERCICIO 9: Eliminar duplicados
-Dificultad: 🟡 Intermedio
-Tiempo estimado: 25 minutos
+Dificultad: Intermedio
 
 Implementa un método remove_duplicates() que elimine todos los elementos
 duplicados de la lista, dejando solo la primera ocurrencia de cada elemento.
@@ -464,68 +910,132 @@ duplicados de la lista, dejando solo la primera ocurrencia de cada elemento.
 Ejemplo:
     [1, 2, 3, 2, 4, 1, 5] → [1, 2, 3, 4, 5]
 
-Versión 1: Puedes usar un conjunto (set) auxiliar - O(n) tiempo, O(n) espacio
-Versión 2: Sin espacio adicional (más difícil) - O(n²) tiempo, O(1) espacio
+Versión 1: Usando un conjunto (set) auxiliar
+Complejidad: O(n) tiempo, O(n) espacio
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista contiene elementos, se recorre hasta
+            llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo.
+            """
             actual.next = nuevo
 
-    # 👇 ESTE MÉTODO ES CLAVE PARA VER EL RESULTADO
     def __str__(self):
+        """
+        Retorna una representación en forma de cadena
+        de la lista enlazada para facilitar su visualización.
+        """
         actual = self.head
         resultado = ""
+
         while actual:
             resultado += str(actual.dato) + " → "
             actual = actual.next
+
         return resultado + "None"
 
-    # Versión con set (O(n))
     def remove_duplicates(self):
+        """
+        Elimina los elementos duplicados de la lista enlazada,
+        conservando únicamente la primera ocurrencia de cada valor.
+
+        Se utiliza un conjunto (set) para almacenar los elementos
+        que ya han sido vistos durante el recorrido.
+        """
         vistos = set()
         actual = self.head
         anterior = None
 
         while actual:
+            """
+            Si el dato del nodo actual ya fue visto,
+            se elimina el nodo ajustando el puntero del nodo anterior.
+            """
             if actual.dato in vistos:
                 anterior.next = actual.next
             else:
+                """
+                Si el dato no ha sido visto, se agrega al conjunto
+                y se avanza el puntero anterior.
+                """
                 vistos.add(actual.dato)
                 anterior = actual
+
+            """
+            Se avanza al siguiente nodo.
+            """
             actual = actual.next
 
+
+# ---------------- CASOS DE PRUEBA ----------------
+
 lista = SLinkedList()
+
+"""
+Se agregan elementos a la lista con valores duplicados.
+"""
 for x in [1, 2, 3, 2, 4, 1, 5]:
     lista.agregar(x)
 
+"""
+Estado de la lista antes de eliminar duplicados.
+"""
 print("Antes:")
 print(lista)
 
+"""
+Se eliminan los elementos duplicados.
+"""
 lista.remove_duplicates()
 
+"""
+Estado de la lista después de eliminar duplicados.
+"""
 print("Después:")
 print(lista)
 
+
+
 """
 EJERCICIO 10: Fusionar dos listas ordenadas
-Dificultad: 🟡 Intermedio
-Tiempo estimado: 30 minutos
+Dificultad: Intermedio
 
 Implementa una función merge_sorted(list1, list2) que tome dos listas
 enlazadas ORDENADAS y retorne una nueva lista enlazada también ordenada
@@ -603,10 +1113,11 @@ for x in [2, 4, 6, 8]:
 resultado = merge_sorted(list1, list2)
 print(resultado)
 
+
+
 """
 EJERCICIO 11: Palíndromo
-Dificultad: 🔴 Avanzado
-Tiempo estimado: 35 minutos
+Dificultad: Avanzado
 
 Implementa un método is_palindrome() que determine si la lista es un palíndromo
 (se lee igual de adelante hacia atrás).
@@ -616,80 +1127,135 @@ Ejemplo:
     [1, 2, 3, 4, 5] → False
 
 Solución eficiente:
-1. Encuentra el medio (algoritmo dos punteros)
+1. Encuentra el medio (algoritmo de dos punteros)
 2. Invierte la segunda mitad
-3. Compara primera mitad con segunda mitad invertida
+3. Compara la primera mitad con la segunda mitad invertida
 4. Restaura la segunda mitad (opcional)
 
-Complejidad: O(n) tiempo, O(1) espacio
+Complejidad:
+- Tiempo: O(n)
+- Espacio: O(1)
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor de la clase Nodo.
+        Guarda el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista enlazada.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo se convierte
+            en el primer nodo.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista tiene elementos, se recorre hasta
+            llegar al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
+            """
+            Se enlaza el último nodo con el nuevo nodo.
+            """
             actual.next = nuevo
 
     def __str__(self):
+        """
+        Retorna una representación en cadena de la lista
+        enlazada para facilitar su visualización.
+        """
         actual = self.head
         res = ""
+
         while actual:
             res += str(actual.dato) + " → "
             actual = actual.next
+
         return res + "None"
 
-    # 🔥 MÉTODO PALÍNDROMO
     def is_palindrome(self):
+        """
+        Determina si la lista enlazada es un palíndromo.
+
+        Retorna True si la lista se lee igual de adelante
+        hacia atrás, False en caso contrario.
+        """
         if not self.head or not self.head.next:
+            """
+            Una lista vacía o con un solo elemento
+            siempre es un palíndromo.
+            """
             return True
 
-        # 1️⃣ Encontrar el medio
         lento = self.head
         rapido = self.head
 
         while rapido and rapido.next:
+            """
+            El puntero lento avanza un nodo.
+            El puntero rápido avanza dos nodos.
+            """
             lento = lento.next
             rapido = rapido.next.next
 
-        # 2️⃣ Invertir la segunda mitad
         prev = None
         actual = lento
 
         while actual:
+            """
+            Se invierte el puntero next de cada nodo
+            de la segunda mitad.
+            """
             sig = actual.next
             actual.next = prev
             prev = actual
             actual = sig
 
-        # 3️⃣ Comparar mitades
         p1 = self.head
-        p2 = prev   # cabeza de la mitad invertida
+        p2 = prev   
 
         es_palindromo = True
+
         while p2:
+            """
+            Se comparan los datos de ambas mitades.
+            """
             if p1.dato != p2.dato:
                 es_palindromo = False
                 break
+
             p1 = p1.next
             p2 = p2.next
 
-        # 4️⃣ Restaurar la lista (opcional)
         actual = prev
         prev = None
+
         while actual:
+            """
+            Se vuelve a invertir la segunda mitad
+            para restaurar la lista original.
+            """
             sig = actual.next
             actual.next = prev
             prev = actual
@@ -697,97 +1263,149 @@ class SLinkedList:
 
         return es_palindromo
 
+
+# ---------------- CASOS DE PRUEBA ----------------
+
+"""
+Prueba 1: Lista palíndroma
+"""
 lista1 = SLinkedList()
 for x in [1, 2, 3, 2, 1]:
     lista1.agregar(x)
 
 print(lista1)
-print(lista1.is_palindrome())  # True
+print(lista1.is_palindrome())  
 
 
+"""
+Prueba 2: Lista no palíndroma
+"""
 lista2 = SLinkedList()
 for x in [1, 2, 3, 4, 5]:
     lista2.agregar(x)
 
 print(lista2)
-print(lista2.is_palindrome())  # False
+print(lista2.is_palindrome()) 
+
+
 
 """
 EJERCICIO 12: Rotar lista
-Dificultad: 🔴 Avanzado
-Tiempo estimado: 30 minutos
+Dificultad: Avanzado
 
-Implementa un método rotate(k) que rote la lista k posiciones a la derecha.
+Implementa un método rotate(k) que rote la lista enlazada
+k posiciones a la derecha.
 
 Ejemplo:
     lista = [1, 2, 3, 4, 5]
     lista.rotate(2)
-    print(lista)  # Output: 4 → 5 → 1 → 2 → 3 → None
+    Resultado:
+        4 → 5 → 1 → 2 → 3 → None
 
-Pasos:
-1. Conectar el último nodo con el primero (hacer circular)
-2. Encontrar el nuevo head (en posición size - k)
-3. Romper el círculo
+Pasos del algoritmo:
+1. Conectar el último nodo con el primero (hacer la lista circular)
+2. Encontrar el nuevo nodo cabeza en la posición (size - k)
+3. Romper el enlace circular
 
-Complejidad esperada: O(n)
+Complejidad esperada:
+- Tiempo: O(n)
+- Espacio: O(1)
 """
 
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor del nodo.
+        Contiene el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
         self.size = 0
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo
+            se convierte en la cabeza.
+            """
             self.head = nuevo
         else:
+            """
+            Si la lista tiene elementos, se recorre
+            hasta el último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
             actual.next = nuevo
+
         self.size += 1
 
     def __str__(self):
+        """
+        Retorna una representación visual de la lista.
+        """
         actual = self.head
         res = ""
+
         while actual:
             res += str(actual.dato) + " → "
             actual = actual.next
+
         return res + "None"
 
-    # 🔄 ROTAR A LA DERECHA
     def rotate(self, k):
+        """
+        Rota la lista k posiciones a la derecha.
+        """
         if not self.head or self.size <= 1:
+            """
+            Si la lista está vacía o tiene un solo elemento,
+            no es necesario rotar.
+            """
             return
 
+        """
+        Se ajusta k en caso de que sea mayor
+        que el tamaño de la lista.
+        """
         k = k % self.size
         if k == 0:
             return
 
-        # 1️⃣ Encontrar último nodo
         tail = self.head
         while tail.next:
             tail = tail.next
-
-        # 2️⃣ Hacer la lista circular
         tail.next = self.head
 
-        # 3️⃣ Encontrar nuevo tail (size - k - 1)
+        """
+        El nuevo tail estará en la posición (size - k - 1)
+        """
         pasos = self.size - k
         nuevo_tail = self.head
+
         for _ in range(pasos - 1):
             nuevo_tail = nuevo_tail.next
 
-        # 4️⃣ Romper el círculo
         self.head = nuevo_tail.next
         nuevo_tail.next = None
+
+
+# ---------------- CASO DE PRUEBA ----------------
 
 lista = SLinkedList()
 for x in [1, 2, 3, 4, 5]:
@@ -801,71 +1419,126 @@ lista.rotate(2)
 print("Después:")
 print(lista)
 
+
+
 """
 EJERCICIO 13: Particionar lista
-Dificultad: 🔴 Avanzado
-Tiempo estimado: 35 minutos
+Dificultad: Avanzado
 
-Implementa un método partition(x) que reorganice la lista de modo que
-todos los elementos menores que x aparezcan antes que los elementos
-mayores o iguales a x. El orden relativo dentro de cada grupo debe preservarse.
+Implementa un método partition(x) que reorganice la lista enlazada de modo que
+todos los elementos menores que x aparezcan antes que los elementos mayores
+o iguales a x.
+
+El orden relativo de los elementos dentro de cada grupo debe preservarse.
 
 Ejemplo:
     lista = [3, 5, 8, 5, 10, 2, 1]
     lista.partition(5)
-    # Resultado: [3, 2, 1] + [5, 8, 5, 10]
-    # O cualquier permutación donde menores a 5 estén primero
 
-Pista: Crea dos listas auxiliares (menores y mayores) y luego únelas.
+    Resultado:
+        [3, 2, 1] → [5, 8, 5, 10]
+    (Cualquier resultado donde los menores a 5 estén primero es válido)
+
+Pista:
+- Crear dos listas auxiliares:
+  una para los elementos menores a x
+  y otra para los elementos mayores o iguales a x.
+- Finalmente unir ambas listas.
 """
 
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor del nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo
+            se convierte en la cabeza.
+            """
             self.head = nuevo
         else:
+            """
+            Se recorre la lista hasta llegar
+            al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
             actual.next = nuevo
 
     def __str__(self):
+        """
+        Retorna una representación visual de la lista.
+        """
         actual = self.head
         res = ""
+
         while actual:
             res += str(actual.dato) + " → "
             actual = actual.next
+
         return res + "None"
 
-    # 🔀 PARTITION
     def partition(self, x):
-        # Cabezas y colas de las dos listas
+        """
+        Reorganiza la lista de modo que todos los elementos
+        menores que x aparezcan antes que los elementos
+        mayores o iguales a x.
+        """
+
+        """
+        Se crean las cabezas y colas de dos listas auxiliares:
+        - menores: elementos < x
+        - mayores: elementos >= x
+        """
         menores_head = menores_tail = None
         mayores_head = mayores_tail = None
 
         actual = self.head
 
         while actual:
+            """
+            Se guarda la referencia al siguiente nodo
+            antes de modificar enlaces.
+            """
             siguiente = actual.next
-            actual.next = None   # desconectar nodo
+            actual.next = None  # Desconectar el nodo actual
 
             if actual.dato < x:
+                """
+                Si el dato es menor que x,
+                se agrega a la lista de menores.
+                """
                 if not menores_head:
                     menores_head = menores_tail = actual
                 else:
                     menores_tail.next = actual
                     menores_tail = actual
             else:
+                """
+                Si el dato es mayor o igual que x,
+                se agrega a la lista de mayores.
+                """
                 if not mayores_head:
                     mayores_head = mayores_tail = actual
                 else:
@@ -874,12 +1547,22 @@ class SLinkedList:
 
             actual = siguiente
 
-        # Unir las dos listas
+        """
+        Se unen ambas listas.
+        Si existen elementos menores, ellos serán la nueva cabeza.
+        """
         if menores_tail:
             menores_tail.next = mayores_head
             self.head = menores_head
         else:
+            """
+            Si no hay elementos menores,
+            la cabeza será la lista de mayores.
+            """
             self.head = mayores_head
+
+
+# ---------------- CASO DE PRUEBA ----------------
 
 lista = SLinkedList()
 for x in [3, 5, 8, 5, 10, 2, 1]:
@@ -893,53 +1576,93 @@ lista.partition(5)
 print("Después:")
 print(lista)
 
+
+
 """
 EJERCICIO 14: Suma de dos listas (números)
-Dificultad: 🔴 Avanzado
-Tiempo estimado: 40 minutos
+Dificultad: Avanzado
 
-Tienes dos listas enlazadas que representan números (cada nodo es un dígito).
-Los dígitos están almacenados en ORDEN INVERSO (el primer nodo es la unidad).
+Se tienen dos listas enlazadas que representan números,
+donde cada nodo contiene un solo dígito.
+
+Los dígitos están almacenados en ORDEN INVERSO:
+- El primer nodo representa la unidad.
+- El segundo nodo representa las decenas, etc.
 
 Implementa una función add_numbers(list1, list2) que sume ambos números
 y retorne el resultado como una nueva lista enlazada.
 
 Ejemplo:
-    list1 = [2, 4, 3] representa 342
-    list2 = [5, 6, 4] representa 465
-    add_numbers(list1, list2) = [7, 0, 8] representa 807
+    list1 = [2, 4, 3] representa el número 342
+    list2 = [5, 6, 4] representa el número 465
 
-Pista: Es como sumar manualmente, llevando el "carry".
+    Resultado:
+        [7, 0, 8] representa el número 807
+
+Pista:
+- Simula la suma manual dígito por dígito.
+- Usa una variable "carry" para manejar el acarreo.
 """
+
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor del nodo.
+        Contiene un dígito y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
+            """
+            Si la lista está vacía, el nuevo nodo
+            se convierte en la cabeza.
+            """
             self.head = nuevo
         else:
+            """
+            Se recorre la lista hasta llegar
+            al último nodo.
+            """
             actual = self.head
             while actual.next:
                 actual = actual.next
+
             actual.next = nuevo
 
     def __str__(self):
+        """
+        Retorna una representación visual de la lista.
+        """
         actual = self.head
         res = ""
+
         while actual:
             res += str(actual.dato) + " → "
             actual = actual.next
+
         return res + "None"
 
+
 def add_numbers(list1, list2):
+    """
+    Suma dos números representados por listas enlazadas
+    y retorna el resultado como una nueva lista enlazada.
+    """
     resultado = SLinkedList()
 
     p1 = list1.head
@@ -947,6 +1670,9 @@ def add_numbers(list1, list2):
     carry = 0
 
     while p1 or p2 or carry:
+        """
+        Se suma el acarreo junto con los dígitos actuales.
+        """
         suma = carry
 
         if p1:
@@ -957,10 +1683,16 @@ def add_numbers(list1, list2):
             suma += p2.dato
             p2 = p2.next
 
+        """
+        Se actualiza el acarreo y se guarda el dígito resultante.
+        """
         carry = suma // 10
         resultado.agregar(suma % 10)
 
     return resultado
+
+
+# ---------------- CASO DE PRUEBA ----------------
 
 list1 = SLinkedList()
 for x in [2, 4, 3]:
@@ -975,41 +1707,57 @@ resultado = add_numbers(list1, list2)
 print("Resultado:")
 print(resultado)
 
+
+
 """
 EJERCICIO 15: Intersección de dos listas
-Dificultad: 🔴 Avanzado
-Tiempo estimado: 45 minutos
+Dificultad: Avanzado
 
-Dadas dos listas enlazadas, determina si se intersectan (comparten nodos)
-y encuentra el nodo donde se intersectan.
+Dadas dos listas enlazadas, se debe determinar si ambas se intersectan,
+es decir, si comparten uno o más nodos en memoria, y encontrar el primer
+nodo donde ocurre dicha intersección.
 
 Ejemplo:
     list1: 1 → 2 → 3 ↘
                       7 → 8 → 9
     list2: 4 → 5 → 6 ↗
-    
-    Retorna el nodo con valor 7 (primer nodo compartido)
+
+    Resultado:
+        Nodo con valor 7 (primer nodo compartido)
 
 Solución eficiente:
-1. Calcula la longitud de ambas listas
-2. Alinea los inicios (avanza en la lista más larga)
-3. Avanza simultáneamente hasta encontrar el nodo común
+1. Calcular la longitud de ambas listas
+2. Alinear los punteros de inicio avanzando en la lista más larga
+3. Avanzar ambas listas simultáneamente hasta encontrar el nodo común
 
-Complejidad: O(n + m) tiempo, O(1) espacio
+Complejidad:
+- Tiempo: O(n + m)
+- Espacio: O(1)
 """
 
 class Nodo:
     def __init__(self, dato):
+        """
+        Constructor del nodo.
+        Almacena el dato y la referencia al siguiente nodo.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
     def __init__(self):
+        """
+        Inicializa una lista simplemente enlazada vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo al final de la lista.
+        """
         nuevo = Nodo(dato)
+
         if not self.head:
             self.head = nuevo
         else:
@@ -1018,22 +1766,37 @@ class SLinkedList:
                 actual = actual.next
             actual.next = nuevo
 
+
 def longitud(lista):
+    """
+    Calcula y retorna la longitud de una lista enlazada.
+    """
     actual = lista.head
     count = 0
+
     while actual:
         count += 1
         actual = actual.next
+
     return count
 
+
 def get_intersection_node(list1, list2):
+    """
+    Retorna el nodo donde dos listas enlazadas se intersectan.
+    Si no existe intersección, retorna None.
+    """
     len1 = longitud(list1)
     len2 = longitud(list2)
 
     p1 = list1.head
     p2 = list2.head
 
-    # 1️⃣ Alinear inicios
+    """
+    1️⃣ Alinear los punteros de inicio.
+    Se avanza en la lista más larga para que ambas
+    tengan la misma cantidad de nodos restantes.
+    """
     if len1 > len2:
         for _ in range(len1 - len2):
             p1 = p1.next
@@ -1041,16 +1804,24 @@ def get_intersection_node(list1, list2):
         for _ in range(len2 - len1):
             p2 = p2.next
 
-    # 2️⃣ Avanzar simultáneamente
+    """
+    2️⃣ Avanzar simultáneamente ambas listas.
+    Se compara la referencia de los nodos (no el valor).
+    """
     while p1 and p2:
-        if p1 is p2:   # COMPARACIÓN DE NODOS, no de valores
+        if p1 is p2:
             return p1
         p1 = p1.next
         p2 = p2.next
 
     return None
 
-# Crear nodos compartidos
+
+# ---------------- CASO DE PRUEBA ----------------
+
+"""
+Creación de nodos compartidos (zona de intersección)
+"""
 n7 = Nodo(7)
 n8 = Nodo(8)
 n9 = Nodo(9)
@@ -1058,21 +1829,30 @@ n9 = Nodo(9)
 n7.next = n8
 n8.next = n9
 
-# Lista 1: 1 → 2 → 3 → 7 → 8 → 9
+
+"""
+Lista 1: 1 → 2 → 3 → 7 → 8 → 9
+"""
 list1 = SLinkedList()
 list1.head = Nodo(1)
 list1.head.next = Nodo(2)
 list1.head.next.next = Nodo(3)
 list1.head.next.next.next = n7
 
-# Lista 2: 4 → 5 → 6 → 7 → 8 → 9
+
+"""
+Lista 2: 4 → 5 → 6 → 7 → 8 → 9
+"""
 list2 = SLinkedList()
 list2.head = Nodo(4)
 list2.head.next = Nodo(5)
 list2.head.next.next = Nodo(6)
 list2.head.next.next.next = n7
 
-# Buscar intersección
+
+"""
+Búsqueda del nodo de intersección
+"""
 interseccion = get_intersection_node(list1, list2)
 
 if interseccion:
@@ -1080,31 +1860,40 @@ if interseccion:
 else:
     print("No hay intersección")
 
+
+
 """
 EJERCICIO 16: Navegador Web
-Dificultad: 🟡 Intermedio
-Tiempo estimado: 40 minutos
+Dificultad: Intermedio
 
-Implementa una clase BrowserHistory que simule el historial de un navegador
-usando una lista doblemente enlazada.
+Se debe implementar una clase BrowserHistory que simule el historial
+de navegación de un navegador web utilizando una lista doblemente enlazada.
+
+Cada nodo representa una página web y mantiene referencias a:
+- la página anterior (prev)
+- la página siguiente (next)
 
 Métodos requeridos:
-- __init__(homepage): Inicia con la página de inicio
-- visit(url): Visita una nueva URL (elimina historial futuro)
-- back(steps): Retrocede 'steps' páginas (máximo hasta el inicio)
-- forward(steps): Avanza 'steps' páginas (máximo hasta el final)
+- __init__(homepage): Inicializa el navegador con la página de inicio
+- visit(url): Visita una nueva URL y elimina el historial futuro
+- back(steps): Retrocede 'steps' páginas (hasta el inicio)
+- forward(steps): Avanza 'steps' páginas (hasta el final)
 - get_current(): Retorna la URL actual
 
 Ejemplo:
     browser = BrowserHistory("google.com")
-    browser.visit("youtube.com")    # google.com → youtube.com
-    browser.visit("facebook.com")   # ... → facebook.com
-    browser.back(1)                 # Vuelve a youtube.com
-    browser.forward(1)              # Regresa a facebook.com
+    browser.visit("youtube.com")
+    browser.visit("facebook.com")
+    browser.back(1)       # youtube.com
+    browser.forward(1)    # facebook.com
 """
 
 class Nodo:
     def __init__(self, url):
+        """
+        Nodo de la lista doblemente enlazada.
+        Contiene la URL y referencias al nodo anterior y siguiente.
+        """
         self.url = url
         self.prev = None
         self.next = None
@@ -1112,94 +1901,146 @@ class Nodo:
 
 class BrowserHistory:
     def __init__(self, homepage):
+        """
+        Inicializa el historial del navegador
+        con la página de inicio.
+        """
         self.current = Nodo(homepage)
 
     def visit(self, url):
+        """
+        Visita una nueva URL.
+        Elimina todo el historial futuro y
+        agrega la nueva página al final.
+        """
         nuevo = Nodo(url)
 
-        # eliminar historial futuro
+        """
+        Al visitar una nueva página, se elimina
+        el historial futuro.
+        """
         self.current.next = None
 
-        # enlazar nuevo nodo
+        """
+        Se enlaza el nuevo nodo con el nodo actual.
+        """
         nuevo.prev = self.current
         self.current.next = nuevo
 
-        # mover actual
+        """
+        Se actualiza la página actual.
+        """
         self.current = nuevo
 
     def back(self, steps):
+        """
+        Retrocede 'steps' páginas en el historial.
+        No puede retroceder más allá del inicio.
+        """
         while steps > 0 and self.current.prev:
             self.current = self.current.prev
             steps -= 1
+
         return self.current.url
 
     def forward(self, steps):
+        """
+        Avanza 'steps' páginas en el historial.
+        No puede avanzar más allá del final.
+        """
         while steps > 0 and self.current.next:
             self.current = self.current.next
             steps -= 1
+
         return self.current.url
 
     def get_current(self):
+        """
+        Retorna la URL de la página actual.
+        """
         return self.current.url
+
+
+# ---------------- CASO DE PRUEBA ----------------
 
 browser = BrowserHistory("google.com")
 
 browser.visit("youtube.com")
 browser.visit("facebook.com")
+browser.back(1)    
+browser.forward(1) 
+print(browser.get_current())  
 
-browser.back(1)        # youtube.com
-browser.forward(1)     # facebook.com
 
-print(browser.get_current())
 
 """
 EJERCICIO 17: LRU Cache
-Dificultad: 🔴 Avanzado
-Tiempo estimado: 60 minutos
+Dificultad: Avanzado
 
-Implementa una estructura de datos LRU Cache (Least Recently Used Cache)
-usando una lista doblemente enlazada + diccionario.
+Se debe implementar una estructura de datos LRU Cache (Least Recently Used),
+la cual almacena pares clave–valor con una capacidad limitada.
 
-El cache tiene capacidad limitada. Cuando se llena, elimina el elemento
-usado menos recientemente.
+Cuando el cache alcanza su capacidad máxima y se inserta un nuevo elemento,
+se elimina el elemento menos recientemente utilizado.
 
-Métodos:
-- __init__(capacity): Crea cache con capacidad dada
-- get(key): Obtiene el valor (marca como usado recientemente)
-- put(key, value): Inserta/actualiza (elimina LRU si está lleno)
+Requisitos:
+- get(key): O(1)
+- put(key, value): O(1)
 
-Ambos métodos deben ser O(1).
+Estructuras usadas:
+- Diccionario (hash map): acceso directo O(1)
+- Lista doblemente enlazada: control del orden de uso
 
-Pista: 
-- Diccionario: para acceso O(1) por key
-- Lista doble: para mantener orden de uso (más reciente al final)
+Reglas:
+- El nodo más recientemente usado (MRU) se ubica al final de la lista
+- El nodo menos recientemente usado (LRU) se ubica al inicio de la lista
 """
 
 class Nodo:
     def __init__(self, key, value):
+        """
+        Nodo de la lista doblemente enlazada.
+        Almacena clave, valor y referencias
+        al nodo anterior y siguiente.
+        """
         self.key = key
         self.value = value
         self.prev = None
         self.next = None
 
+
 class LRUCache:
     def __init__(self, capacity):
+        """
+        Inicializa el cache con una capacidad máxima.
+        """
         self.capacity = capacity
-        self.cache = {}  # key -> nodo
+        self.cache = {}   # Diccionario: key → nodo
 
-        # Nodos ficticios (dummy) para simplificar
-        self.head = Nodo(0, 0)  # LRU
-        self.tail = Nodo(0, 0)  # MRU
+        """
+        Nodos ficticios (dummy) para simplificar operaciones.
+        head.next  → LRU
+        tail.prev  → MRU
+        """
+        self.head = Nodo(0, 0)
+        self.tail = Nodo(0, 0)
         self.head.next = self.tail
         self.tail.prev = self.head
 
     def _remove(self, nodo):
+        """
+        Elimina un nodo de la lista doblemente enlazada.
+        """
         prev = nodo.prev
         next = nodo.next
         prev.next = next
         next.prev = prev
 
     def _add_to_end(self, nodo):
+        """
+        Agrega un nodo al final de la lista
+        (marca como más recientemente usado).
+        """
         prev = self.tail.prev
         prev.next = nodo
         nodo.prev = prev
@@ -1207,114 +2048,179 @@ class LRUCache:
         self.tail.prev = nodo
 
     def get(self, key):
+        """
+        Retorna el valor asociado a la clave.
+        Si existe, el nodo se mueve al final (MRU).
+        """
         if key not in self.cache:
             return -1
 
         nodo = self.cache[key]
 
-        # mover a más recientemente usado
+        """
+        Se mueve el nodo al final
+        para marcarlo como usado recientemente.
+        """
         self._remove(nodo)
         self._add_to_end(nodo)
 
         return nodo.value
 
     def put(self, key, value):
+        """
+        Inserta o actualiza un valor en el cache.
+        Si el cache está lleno, elimina el LRU.
+        """
         if key in self.cache:
+            """
+            Si la clave ya existe, se actualiza
+            el valor y se mueve a MRU.
+            """
             nodo = self.cache[key]
             nodo.value = value
             self._remove(nodo)
             self._add_to_end(nodo)
         else:
+            """
+            Si el cache está lleno, se elimina
+            el nodo menos recientemente usado.
+            """
             if len(self.cache) == self.capacity:
-                # eliminar LRU
                 lru = self.head.next
                 self._remove(lru)
                 del self.cache[lru.key]
 
+            """
+            Se agrega el nuevo nodo.
+            """
             nuevo = Nodo(key, value)
             self.cache[key] = nuevo
             self._add_to_end(nuevo)
+
+
+# ---------------- CASO DE PRUEBA ----------------
 
 cache = LRUCache(2)
 
 cache.put(1, 10)
 cache.put(2, 20)
 
-print(cache.get(1))  # 10 (1 es ahora el más reciente)
+print(cache.get(1))  
 
-cache.put(3, 30)     # elimina key 2 (LRU)
+cache.put(3, 30)      
 
-print(cache.get(2))  # -1
-print(cache.get(3))  # 30
-print(cache.get(1))  # 10
+print(cache.get(2))   
+print(cache.get(3))   
+print(cache.get(1))   
+
+
 
 """
 EJERCICIO 18: Editor Multi-cursor
-Dificultad: 🔴 Avanzado
-Tiempo estimado: 50 minutos
+Dificultad: Avanzado
 
-Extiende el TextEditor para soportar múltiples cursores (como en VS Code).
-Cada cursor puede estar en una posición diferente del documento.
+Se debe implementar un editor de texto que soporte múltiples cursores,
+similar a editores modernos como VS Code.
 
-Funcionalidades:
-- add_cursor(position): Agregar cursor en posición
-- remove_cursor(cursor_id): Eliminar cursor
-- type_at_cursor(cursor_id, text): Escribir en cursor específico
-- undo_all(): Deshacer en todos los cursores
-- redo_all(): Rehacer en todos los cursores
+Cada cursor puede estar en una posición distinta del documento y
+realizar inserciones independientes.
 
-Esto requiere mantener múltiples historiales sincronizados.
+Funcionalidades requeridas:
+- add_cursor(position): Agrega un cursor en una posición dada
+- remove_cursor(cursor_id): Elimina un cursor existente
+- type_at_cursor(cursor_id, text): Inserta texto en la posición del cursor
+- undo_all(): Deshace la última acción realizada
+- redo_all(): Rehace la última acción deshecha
+
+Requisitos clave:
+- Mantener sincronizadas las posiciones de todos los cursores
+- Gestionar correctamente undo / redo
 """
-
 
 class Action:
     def __init__(self, cursor_id, position, text):
+        """
+        Representa una acción de edición realizada por un cursor.
+        Guarda el cursor, la posición y el texto insertado.
+        """
         self.cursor_id = cursor_id
         self.position = position
         self.text = text
 
+
 class MultiCursorEditor:
     def __init__(self):
+        """
+        Inicializa el editor con:
+        - Documento vacío
+        - Diccionario de cursores
+        - Pilas de undo y redo
+        """
         self.document = ""
-        self.cursors = {}          # cursor_id -> position
+        self.cursors = {}          
         self.next_cursor_id = 1
         self.undo_stack = []
         self.redo_stack = []
 
     def add_cursor(self, position):
+        """
+        Agrega un nuevo cursor en la posición indicada
+        y retorna su identificador.
+        """
         cursor_id = self.next_cursor_id
         self.next_cursor_id += 1
         self.cursors[cursor_id] = position
         return cursor_id
 
     def remove_cursor(self, cursor_id):
+        """
+        Elimina un cursor existente.
+        """
         if cursor_id in self.cursors:
             del self.cursors[cursor_id]
 
     def type_at_cursor(self, cursor_id, text):
+        """
+        Inserta texto en la posición del cursor especificado.
+        Ajusta las posiciones de los demás cursores
+        y guarda la acción para undo.
+        """
         if cursor_id not in self.cursors:
             return
 
         pos = self.cursors[cursor_id]
 
-        # insertar texto
+        """
+        Inserción del texto en el documento.
+        """
         self.document = (
             self.document[:pos] + text + self.document[pos:]
         )
 
-        # actualizar posiciones de cursores
+        """
+        Actualización de las posiciones de los cursores.
+        Los cursores a la derecha del punto de inserción
+        se desplazan.
+        """
         for cid in self.cursors:
             if self.cursors[cid] > pos:
                 self.cursors[cid] += len(text)
 
-        # mover cursor actual
+        """
+        Mover el cursor actual al final del texto insertado.
+        """
         self.cursors[cursor_id] += len(text)
 
-        # guardar acción
+        """
+        Guardar la acción y limpiar el redo stack.
+        """
         self.undo_stack.append(Action(cursor_id, pos, text))
         self.redo_stack.clear()
 
     def undo_all(self):
+        """
+        Deshace la última acción realizada.
+        """
         if not self.undo_stack:
             return
 
@@ -1322,19 +2228,29 @@ class MultiCursorEditor:
         pos = action.position
         length = len(action.text)
 
-        # eliminar texto
+        """
+        Eliminar el texto insertado.
+        """
         self.document = (
             self.document[:pos] + self.document[pos + length:]
         )
 
-        # ajustar cursores
+        """
+        Ajustar las posiciones de los cursores.
+        """
         for cid in self.cursors:
             if self.cursors[cid] > pos:
                 self.cursors[cid] -= length
 
+        """
+        Guardar la acción en el redo stack.
+        """
         self.redo_stack.append(action)
 
     def redo_all(self):
+        """
+        Rehace la última acción deshecha.
+        """
         if not self.redo_stack:
             return
 
@@ -1342,17 +2258,27 @@ class MultiCursorEditor:
         pos = action.position
         text = action.text
 
-        # reinsertar texto
+        """
+        Reinsertar el texto.
+        """
         self.document = (
             self.document[:pos] + text + self.document[pos:]
         )
 
-        # ajustar cursores
+        """
+        Ajustar las posiciones de los cursores.
+        """
         for cid in self.cursors:
             if self.cursors[cid] > pos:
                 self.cursors[cid] += len(text)
 
+        """
+        Volver a guardar la acción en undo.
+        """
         self.undo_stack.append(action)
+
+
+# ---------------- CASO DE PRUEBA ----------------
 
 editor = MultiCursorEditor()
 
@@ -1362,21 +2288,22 @@ c2 = editor.add_cursor(0)
 editor.type_at_cursor(c1, "Hola")
 editor.type_at_cursor(c2, "Hey ")
 
-print(editor.document)  # Hey Hola
+print(editor.document)   
 
 editor.undo_all()
-print(editor.document)  # Hola
+print(editor.document)   
 
 editor.redo_all()
-print(editor.document)  # Hey Hola
+print(editor.document)   
+
+
 
 """
 EJERCICIO 19: Benchmark de operaciones
-Dificultad: 🟡 Intermedio
-Tiempo estimado: 30 minutos
+Dificultad: Intermedio
 
-Escribe un programa que compare el rendimiento de:
-- Arrays (listas de Python)
+Se debe comparar el rendimiento de tres estructuras de datos:
+- Arrays (listas nativas de Python)
 - Listas simplemente enlazadas
 - Listas doblemente enlazadas
 
@@ -1387,33 +2314,51 @@ Para las siguientes operaciones:
 4. Eliminación al final (1000 elementos)
 5. Acceso por índice (1000 accesos aleatorios)
 
-Usa el módulo 'time' para medir el tiempo.
-Imprime los resultados en una tabla comparativa.
+Se utilizará el módulo 'time' para medir el tiempo de ejecución
+y se mostrarán los resultados en una tabla comparativa.
 """
 
 import time
 import random
 
+
 class Node:
     def __init__(self, data):
+        """
+        Nodo base para listas enlazadas.
+        Contiene el dato y referencias al siguiente
+        y anterior nodo (si aplica).
+        """
         self.data = data
         self.next = None
         self.prev = None
 
+
 class SinglyLinkedList:
+    """
+    Implementación de lista simplemente enlazada.
+    """
     def __init__(self):
         self.head = None
         self.tail = None
 
     def insert_start(self, value):
+        """
+        Inserta un elemento al inicio de la lista.
+        """
         node = Node(value)
         node.next = self.head
         self.head = node
+
         if not self.tail:
             self.tail = node
 
     def insert_end(self, value):
+        """
+        Inserta un elemento al final de la lista.
+        """
         node = Node(value)
+
         if not self.head:
             self.head = self.tail = node
         else:
@@ -1421,55 +2366,85 @@ class SinglyLinkedList:
             self.tail = node
 
     def remove_start(self):
+        """
+        Elimina el elemento del inicio de la lista.
+        """
         if self.head:
             self.head = self.head.next
             if not self.head:
                 self.tail = None
 
     def remove_end(self):
+        """
+        Elimina el elemento del final de la lista.
+        """
         if not self.head:
             return
+
         if self.head == self.tail:
             self.head = self.tail = None
             return
+
         current = self.head
         while current.next != self.tail:
             current = current.next
+
         current.next = None
         self.tail = current
 
     def get(self, index):
+        """
+        Retorna el elemento en la posición index.
+        """
         current = self.head
         for _ in range(index):
             current = current.next
         return current.data
 
+
 class DoublyLinkedList:
+    """
+    Implementación de lista doblemente enlazada.
+    """
     def __init__(self):
         self.head = None
         self.tail = None
 
     def insert_start(self, value):
+        """
+        Inserta un elemento al inicio de la lista.
+        """
         node = Node(value)
+
         if self.head:
             node.next = self.head
             self.head.prev = node
         else:
             self.tail = node
+
         self.head = node
 
     def insert_end(self, value):
+        """
+        Inserta un elemento al final de la lista.
+        """
         node = Node(value)
+
         if self.tail:
             self.tail.next = node
             node.prev = self.tail
         else:
             self.head = node
+
         self.tail = node
 
     def remove_start(self):
+        """
+        Elimina el elemento del inicio de la lista.
+        """
         if not self.head:
             return
+
         self.head = self.head.next
         if self.head:
             self.head.prev = None
@@ -1477,8 +2452,12 @@ class DoublyLinkedList:
             self.tail = None
 
     def remove_end(self):
+        """
+        Elimina el elemento del final de la lista.
+        """
         if not self.tail:
             return
+
         self.tail = self.tail.prev
         if self.tail:
             self.tail.next = None
@@ -1486,18 +2465,25 @@ class DoublyLinkedList:
             self.head = None
 
     def get(self, index):
+        """
+        Retorna el elemento en la posición index.
+        """
         current = self.head
         for _ in range(index):
             current = current.next
         return current.data
 
+
 def benchmark():
+    """
+    Ejecuta el benchmark comparativo entre:
+    - Array
+    - Lista simplemente enlazada
+    - Lista doblemente enlazada
+    """
     N = 1000
     indices = [random.randint(0, N - 1) for _ in range(N)]
-
     results = {}
-
-    # ===== ARRAY =====
     arr = []
     start = time.time()
     for i in range(N):
@@ -1527,7 +2513,6 @@ def benchmark():
         _ = arr[i]
     results["Array access"] = time.time() - start
 
-    # ===== SINGLY LINKED LIST =====
     sll = SinglyLinkedList()
     start = time.time()
     for i in range(N):
@@ -1561,7 +2546,6 @@ def benchmark():
         _ = sll.get(i)
     results["SLL access"] = time.time() - start
 
-    # ===== DOUBLY LINKED LIST =====
     dll = DoublyLinkedList()
     start = time.time()
     for i in range(N):
@@ -1594,93 +2578,94 @@ def benchmark():
     for i in indices:
         _ = dll.get(i)
     results["DLL access"] = time.time() - start
-
-    # ===== PRINT TABLE =====
+    
     print("\n--- BENCHMARK (1000 operaciones) ---")
     for k, v in results.items():
         print(f"{k:25} {v:.6f} s")
 
 benchmark()
 
+
+
 """
 EJERCICIO 20: Análisis de casos de uso
 Dificultad: 🟡 Intermedio
 Tiempo estimado: 20 minutos
 
-Para cada uno de los siguientes escenarios, determina qué estructura
-es más apropiada (Array, Lista Simple, Lista Doble) y justifica tu respuesta:
-
-1. Sistema de colas de impresión (FIFO estricto)
-2. Historial de navegación de un navegador
-3. Sistema de undo/redo con límite de 100 acciones
-4. Base de datos que necesita acceso rápido por ID
-5. Playlist de música con navegación adelante/atrás
-6. Sistema de gestión de memoria del OS
-7. Editor de texto que solo permite append al final
-8. Implementación de una pila (Stack)
-9. Juego que necesita insertar/eliminar enemigos frecuentemente
-10. Sistema de logs que solo escribe al final y lee todo
-
-Escribe tus respuestas en comentarios con justificación.
+Para cada uno de los siguientes escenarios, se determina la estructura
+de datos más apropiada (Array, Lista Simple, Lista Doble) y se justifica
+la elección según su uso y complejidad.
 """
 
-# 1. Sistema de colas de impresión (FIFO estricto)
-# Estructura: Lista simplemente enlazada
-# Justificación:
-# Inserciones al final (enqueue) y eliminaciones al inicio (dequeue)
-# se realizan en O(1). No se necesita acceso por índice.
+"""
+1. Sistema de colas de impresión (FIFO estricto)
+Estructura: Lista simplemente enlazada
+Justificación: El sistema funciona como una cola FIFO.
+Permite insertar al final y eliminar al inicio en O(1)
+manteniendo referencias a head y tail.
+No se requiere acceso por índice.
+"""
 
-# 2. Historial de navegación de un navegador
-# Estructura: Lista doblemente enlazada
-# Justificación:
-# Permite navegar hacia atrás y adelante en O(1),
-# ya que cada nodo tiene referencia al anterior y siguiente.
+"""
+2. Historial de navegación de un navegador
+Estructura: Lista doblemente enlazada
+Justificación: Permite navegar hacia atrás y adelante en O(1),
+ya que cada nodo mantiene referencia al anterior y al siguiente.
+"""
 
-# 3. Sistema de undo/redo con límite de 100 acciones
-# Estructura: Lista doblemente enlazada
-# Justificación:
-# Facilita moverse entre estados anteriores y siguientes.
-# El límite se controla eliminando nodos antiguos.
-# (Alternativamente dos stacks, pero DLL es más natural aquí).
+"""
+3. Sistema de undo/redo con límite de 100 acciones
+Estructura: Lista doblemente enlazada
+Justificación: Facilita moverse entre acciones anteriores y posteriores.
+El límite se controla eliminando nodos antiguos.
+Las operaciones undo y redo son O(1).
+"""
 
-# 4. Base de datos que necesita acceso rápido por ID
-# Estructura: Array (lista de Python)
-# Justificación:
-# Permite acceso directo por índice en O(1),
-# ideal cuando el ID corresponde a una posición.
+"""
+4. Base de datos que necesita acceso rápido por ID
+Estructura: Array (lista de Python)
+Justificación: Permite acceso directo por índice en O(1).
+Es ideal cuando el ID corresponde a una posición específica.
+"""
 
-# 5. Playlist de música con navegación adelante/atrás
-# Estructura: Lista doblemente enlazada
-# Justificación:
-# Permite avanzar y retroceder fácilmente entre canciones
-# sin recorrer toda la estructura.
+"""
+5. Playlist de música con navegación adelante/atrás
+Estructura: Lista doblemente enlazada
+Justificación: Permite avanzar y retroceder entre canciones fácilmente
+sin recorrer toda la estructura.
+"""
 
-# 6. Sistema de gestión de memoria del OS
-# Estructura: Lista simplemente enlazada
-# Justificación:
-# Se usan listas de bloques libres donde se insertan y eliminan
-# nodos frecuentemente, sin necesidad de acceso aleatorio.
+"""
+6. Sistema de gestión de memoria del sistema operativo
+Estructura: Lista simplemente enlazada
+Justificación: Se usan listas de bloques libres donde se insertan y eliminan
+elementos frecuentemente sin necesidad de acceso aleatorio.
+"""
 
-# 7. Editor de texto que solo permite append al final
-# Estructura: Array (lista de Python)
-# Justificación:
-# append() es O(1) amortizado y permite almacenar el texto
-# de forma contigua, facilitando su recorrido completo.
+"""
+7. Editor de texto que solo permite append al final
+Estructura: Array (lista de Python)
+Justificación: La operación append es O(1) amortizado.
+La memoria contigua facilita la lectura secuencial del texto.
+"""
 
-# 8. Implementación de una pila (Stack)
-# Estructura: Array (lista de Python)
-# Justificación:
-# push() y pop() al final son O(1) amortizado
-# y la implementación es simple y eficiente.
+"""
+8. Implementación de una pila (Stack)
+Estructura: Array (lista de Python)
+Justificación: Las operaciones push y pop al final son O(1) amortizado.
+Es una implementación simple y eficiente.
+"""
 
-# 9. Juego que necesita insertar/eliminar enemigos frecuentemente
-# Estructura: Lista simplemente enlazada
-# Justificación:
-# Inserciones y eliminaciones frecuentes en posiciones variables
-# se hacen en O(1) sin desplazar elementos como en un array.
+"""
+9. Juego que necesita insertar y eliminar enemigos frecuentemente
+Estructura: Lista simplemente enlazada
+Justificación: Permite inserciones y eliminaciones en O(1)
+sin desplazar elementos como en un array.
+"""
 
-# 10. Sistema de logs que solo escribe al final y lee todo
-# Estructura: Array (lista de Python)
-# Justificación:
-# Escrituras solo al final (append) y lectura secuencial
-# hacen al array la opción más eficiente y simple.
+"""
+10. Sistema de logs que solo escribe al final y lee todo
+Estructura: Array (lista de Python)
+Justificación: Las escrituras al final con append y la lectura secuencial
+hacen que el array sea la opción más eficiente.
+"""
