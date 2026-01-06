@@ -95,23 +95,28 @@ class SLinkedList:
         return contador
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 1 ================\n")
 
-lista = SLinkedList()
-
-"""
-Se agregan elementos a la lista para realizar las pruebas.
-"""
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in [0, 2, 3, 2, 4, 2]:
-    lista.agregar(x)
+    lista1.agregar(x)
+print(lista1.count(2))  # Esperado: 3
 
-"""
-Pruebas del método count:
-- El número 2 aparece tres veces
-- El número 5 no aparece en la lista
-"""
-print(lista.count(2))  
-print(lista.count(5))  
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in [5, 5, 5, 5]:
+    lista2.agregar(x)
+print(lista2.count(5))  # Esperado: 4
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+for x in [1, 3, 4, 6]:
+    lista3.agregar(x)
+print(lista3.count(2))  # Esperado: 0
 
 
 
@@ -209,22 +214,31 @@ class SLinkedList:
         raise IndexError("Índice fuera de rango")
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 2 ================\n")
 
-lista = SLinkedList()
-
-"""
-Se agregan elementos a la lista para realizar las pruebas.
-"""
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in ['A', 'B', 'C', 'D']:
-    lista.agregar(x)
+    lista1.agregar(x)
+print(lista1.get(0))   # Esperado: 'A'
 
-"""
-Pruebas del método get:
-"""
-print(lista.get(0))  
-print(lista.get(2))   
-print(lista.get(10))  
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in ['A', 'B', 'C', 'D']:
+    lista2.agregar(x)
+print(lista2.get(2))   # Esperado: 'C'
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+for x in ['A', 'B', 'C', 'D']:
+    lista3.agregar(x)
+try:
+    print(lista3.get(10))
+except IndexError as e:
+    print(e)
 
 
 
@@ -316,22 +330,28 @@ class SLinkedList:
         return -1
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 3 ================\n")
 
-lista = SLinkedList()
-
-"""
-Se agregan elementos a la lista para realizar las pruebas.
-"""
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in ['A', 'B', 'C', 'B', 'D']:
-    lista.agregar(x)
+    lista1.agregar(x)
+print(lista1.index_of('B'))   # Resultado esperado: 1
 
-"""
-Pruebas del método index_of:
-"""
-print(lista.index_of('B'))  
-print(lista.index_of('D')) 
-print(lista.index_of('Z'))  
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in ['A', 'B', 'C', 'B', 'D']:
+    lista2.agregar(x)
+print(lista2.index_of('D'))   # Resultado esperado: 4
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+for x in ['A', 'B', 'C', 'B', 'D']:
+    lista3.agregar(x)
+print(lista3.index_of('Z'))   # Resultado esperado: -1
 
 
 
@@ -414,22 +434,28 @@ class SLinkedList:
         return resultado
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 4 ================\n")
 
-linked_list = SLinkedList()
-
-"""
-Se agregan elementos a la lista para realizar las pruebas.
-"""
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in [1, 2, 3, 4]:
-    linked_list.agregar(x)
+    lista1.agregar(x)
+print(lista1.to_list())
 
-"""
-Prueba del método to_list:
-"""
-print(linked_list.to_list())  
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in [10, 20]:
+    lista2.agregar(x)
+print(lista2.to_list())
 
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+print(lista3.to_list())
 
+ 
 
 """
 EJERCICIO 5: Limpiar lista
@@ -505,25 +531,30 @@ class SLinkedList:
         self.size = 0
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 5 ================\n")
 
-lista = SLinkedList()
-
-"""
-Se agregan elementos a la lista para realizar las pruebas.
-"""
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in [1, 2, 3, 4, 5]:
-    lista.agregar(x)
+    lista1.agregar(x)
+lista1.clear()
+print(lista1.size)   # Resultado esperado: 0
 
-"""
-Se limpia completamente la lista.
-"""
-lista.clear()
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in [10, 20]:
+    lista2.agregar(x)
+lista2.clear()
+print(lista2.size)   # Resultado esperado: 0
 
-"""
-Prueba del método clear:
-"""
-print(lista.size)  
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+lista3.clear()
+print(lista3.size)   # Resultado esperado: 0
+
 
 
 
@@ -633,25 +664,40 @@ class SLinkedList:
         self.head = anterior
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 6 ================\n")
 
-lista = SLinkedList()
-
-"""
-Se agregan elementos a la lista para realizar las pruebas.
-"""
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in [1, 2, 3, 4, 5]:
-    lista.agregar(x)
+    lista1.agregar(x)
+lista1.reverse()
 
-"""
-Se invierte la lista enlazada.
-"""
-lista.reverse()
+actual = lista1.head
+while actual:
+    print(actual.dato, end=" -> ")
+    actual = actual.next
+print("None")
 
-"""
-Prueba del método reverse.
-"""
-actual = lista.head
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in [10, 20]:
+    lista2.agregar(x)
+lista2.reverse()
+
+actual = lista2.head
+while actual:
+    print(actual.dato, end=" -> ")
+    actual = actual.next
+print("None")
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+lista3.reverse()
+
+actual = lista3.head
 while actual:
     print(actual.dato, end=" -> ")
     actual = actual.next
@@ -752,21 +798,17 @@ class SLinkedList:
         return False
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 7 ================\n")
 
-"""
-Prueba 1: Lista sin ciclo
-"""
+"""Caso 1"""
+print("Caso 1:")
 lista1 = SLinkedList()
 for x in [1, 2, 3]:
     lista1.agregar(x)
+print(lista1.has_cycle())   # Resultado esperado: False
 
-print(lista1.has_cycle()) 
-
-
-"""
-Prueba 2: Lista con ciclo
-"""
+"""Caso 2"""
+print("\nCaso 2:")
 lista2 = SLinkedList()
 
 n1 = Nodo(1)
@@ -776,9 +818,14 @@ n3 = Nodo(3)
 lista2.head = n1
 n1.next = n2
 n2.next = n3
-n3.next = n2  
+n3.next = n2   # Se crea el ciclo
 
-print(lista2.has_cycle()) 
+print(lista2.has_cycle())   # Resultado esperado: True
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+print(lista3.has_cycle())   # Resultado esperado: False
 
 
 
@@ -877,26 +924,27 @@ class SLinkedList:
         return lento.dato
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 8 ================\n")
 
-"""
-Prueba 1: Lista con número impar de elementos
-"""
+"""Caso 1"""
+print("Caso 1:")
 lista1 = SLinkedList()
 for x in [1, 2, 3, 4, 5]:
     lista1.agregar(x)
+print(lista1.get_middle())   # Resultado esperado: 3
 
-print(lista1.get_middle())  
-
-
-"""
-Prueba 2: Lista con número par de elementos
-"""
+"""Caso 2"""
+print("\nCaso 2:")
 lista2 = SLinkedList()
 for x in [1, 2, 3, 4]:
     lista2.agregar(x)
+print(lista2.get_middle())   # Resultado esperado: 3
 
-print(lista2.get_middle())  
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+print(lista3.get_middle())   # Resultado esperado: None
+ 
 
 
 
@@ -1004,32 +1052,51 @@ class SLinkedList:
             actual = actual.next
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 9 ================\n")
 
-lista = SLinkedList()
-
-"""
-Se agregan elementos a la lista con valores duplicados.
-"""
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in [1, 2, 3, 2, 4, 1, 5]:
-    lista.agregar(x)
+    lista1.agregar(x)
 
-"""
-Estado de la lista antes de eliminar duplicados.
-"""
 print("Antes:")
-print(lista)
+print(lista1)
 
-"""
-Se eliminan los elementos duplicados.
-"""
-lista.remove_duplicates()
+lista1.remove_duplicates()
 
-"""
-Estado de la lista después de eliminar duplicados.
-"""
 print("Después:")
-print(lista)
+print(lista1)
+
+
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in [10, 10, 10, 10]:
+    lista2.agregar(x)
+
+print("Antes:")
+print(lista2)
+
+lista2.remove_duplicates()
+
+print("Después:")
+print(lista2)
+
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+for x in [1, 2, 3, 4]:
+    lista3.agregar(x)
+
+print("Antes:")
+print(lista3)
+
+lista3.remove_duplicates()
+
+print("Después:")
+print(lista3)
 
 
 
@@ -1050,16 +1117,33 @@ Pista: Usa dos punteros, uno para cada lista, y compara elementos.
 """
 
 class Nodo:
+    """
+    Representa un nodo de una lista simplemente enlazada.
+    Contiene un dato y una referencia al siguiente nodo.
+    """
     def __init__(self, dato):
+        """
+        Inicializa el nodo con un valor y apunta al siguiente como None.
+        """
         self.dato = dato
         self.next = None
 
 
 class SLinkedList:
+    """
+    Implementación de una lista simplemente enlazada.
+    Mantiene una referencia al primer nodo (head).
+    """
     def __init__(self):
+        """
+        Crea una lista vacía.
+        """
         self.head = None
 
     def agregar(self, dato):
+        """
+        Agrega un nuevo nodo con el dato recibido al final de la lista.
+        """
         nuevo = Nodo(dato)
         if not self.head:
             self.head = nuevo
@@ -1070,6 +1154,9 @@ class SLinkedList:
             actual.next = nuevo
 
     def __str__(self):
+        """
+        Devuelve una representación en texto de la lista enlazada.
+        """
         actual = self.head
         resultado = ""
         while actual:
@@ -1077,12 +1164,21 @@ class SLinkedList:
             actual = actual.next
         return resultado + "None"
 
+
 def merge_sorted(list1, list2):
+    """
+    Combina dos listas simplemente enlazadas ordenadas
+    en una nueva lista también ordenada.
+    """
     nueva_lista = SLinkedList()
 
     p1 = list1.head
     p2 = list2.head
 
+    """
+    Recorre ambas listas comparando los valores
+    y agregando el menor a la nueva lista.
+    """
     while p1 and p2:
         if p1.dato <= p2.dato:
             nueva_lista.agregar(p1.dato)
@@ -1091,17 +1187,29 @@ def merge_sorted(list1, list2):
             nueva_lista.agregar(p2.dato)
             p2 = p2.next
 
-    # Agregar los elementos restantes
+    """
+    Agrega los elementos restantes de la primera lista,
+    si aún quedan nodos.
+    """
     while p1:
         nueva_lista.agregar(p1.dato)
         p1 = p1.next
 
+    """
+    Agrega los elementos restantes de la segunda lista,
+    si aún quedan nodos.
+    """
     while p2:
         nueva_lista.agregar(p2.dato)
         p2 = p2.next
 
     return nueva_lista
 
+
+print("\n================ EJERCICIO 10 ================\n")
+
+"""Caso 1"""
+print("Caso 1:")
 list1 = SLinkedList()
 for x in [1, 3, 5, 7]:
     list1.agregar(x)
@@ -1111,7 +1219,34 @@ for x in [2, 4, 6, 8]:
     list2.agregar(x)
 
 resultado = merge_sorted(list1, list2)
-print(resultado)
+print(resultado)   # Esperado: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → None
+
+
+"""Caso 2"""
+print("\nCaso 2:")
+list3 = SLinkedList()
+for x in [1, 2, 3]:
+    list3.agregar(x)
+
+list4 = SLinkedList()
+for x in [4, 5, 6]:
+    list4.agregar(x)
+
+resultado = merge_sorted(list3, list4)
+print(resultado)   # Esperado: 1 → 2 → 3 → 4 → 5 → 6 → None
+
+
+"""Caso 3"""
+print("\nCaso 3:")
+list5 = SLinkedList()
+
+list6 = SLinkedList()
+for x in [10, 20, 30]:
+    list6.agregar(x)
+
+resultado = merge_sorted(list5, list6)
+print(resultado)   # Esperado: 10 → 20 → 30 → None
+
 
 
 
@@ -1264,28 +1399,36 @@ class SLinkedList:
         return es_palindromo
 
 
-# ---------------- CASOS DE PRUEBA ----------------
+print("\n================ EJERCICIO 11 ================\n")
 
-"""
-Prueba 1: Lista palíndroma
-"""
+"""Caso 1"""
+print("Caso 1:")
 lista1 = SLinkedList()
 for x in [1, 2, 3, 2, 1]:
     lista1.agregar(x)
 
 print(lista1)
-print(lista1.is_palindrome())  
+print(lista1.is_palindrome())   # Resultado esperado: True
 
 
-"""
-Prueba 2: Lista no palíndroma
-"""
+"""Caso 2"""
+print("\nCaso 2:")
 lista2 = SLinkedList()
 for x in [1, 2, 3, 4, 5]:
     lista2.agregar(x)
 
 print(lista2)
-print(lista2.is_palindrome()) 
+print(lista2.is_palindrome())   # Resultado esperado: False
+
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+for x in [7]:
+    lista3.agregar(x)
+
+print(lista3)
+print(lista3.is_palindrome())   # Resultado esperado: True
 
 
 
@@ -1405,19 +1548,54 @@ class SLinkedList:
         nuevo_tail.next = None
 
 
-# ---------------- CASO DE PRUEBA ----------------
+print("\n================ EJERCICIO 12 ================\n")
 
-lista = SLinkedList()
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in [1, 2, 3, 4, 5]:
-    lista.agregar(x)
+    lista1.agregar(x)
 
 print("Antes:")
-print(lista)
+print(lista1)
 
-lista.rotate(2)
+lista1.rotate(2)
 
 print("Después:")
-print(lista)
+print(lista1)
+# Esperado: 4 → 5 → 1 → 2 → 3 → None
+
+
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in [10, 20, 30, 40]:
+    lista2.agregar(x)
+
+print("Antes:")
+print(lista2)
+
+lista2.rotate(1)
+
+print("Después:")
+print(lista2)
+# Esperado: 40 → 10 → 20 → 30 → None
+
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+for x in [7]:
+    lista3.agregar(x)
+
+print("Antes:")
+print(lista3)
+
+lista3.rotate(3)
+
+print("Después:")
+print(lista3)
+# Esperado: 7 → None
 
 
 
@@ -1562,19 +1740,54 @@ class SLinkedList:
             self.head = mayores_head
 
 
-# ---------------- CASO DE PRUEBA ----------------
+print("\n================ EJERCICIO 13 ================\n")
 
-lista = SLinkedList()
+"""Caso 1"""
+print("Caso 1:")
+lista1 = SLinkedList()
 for x in [3, 5, 8, 5, 10, 2, 1]:
-    lista.agregar(x)
+    lista1.agregar(x)
 
 print("Antes:")
-print(lista)
+print(lista1)
 
-lista.partition(5)
+lista1.partition(5)
 
 print("Después:")
-print(lista)
+print(lista1)
+# Esperado: 3 → 2 → 1 → 5 → 8 → 5 → 10 → None
+
+
+"""Caso 2"""
+print("\nCaso 2:")
+lista2 = SLinkedList()
+for x in [1, 2, 3, 4]:
+    lista2.agregar(x)
+
+print("Antes:")
+print(lista2)
+
+lista2.partition(3)
+
+print("Después:")
+print(lista2)
+# Esperado: 1 → 2 → 3 → 4 → None
+
+
+"""Caso 3"""
+print("\nCaso 3:")
+lista3 = SLinkedList()
+for x in [6, 7, 8]:
+    lista3.agregar(x)
+
+print("Antes:")
+print(lista3)
+
+lista3.partition(5)
+
+print("Después:")
+print(lista3)
+# Esperado: 6 → 7 → 8 → None
 
 
 
@@ -1692,20 +1905,54 @@ def add_numbers(list1, list2):
     return resultado
 
 
-# ---------------- CASO DE PRUEBA ----------------
+print("\n================ EJERCICIO 14 ================\n")
 
+"""Caso 1"""
+print("Caso 1:")
 list1 = SLinkedList()
-for x in [2, 4, 3]:
+for x in [2, 4, 3]:   # 342
     list1.agregar(x)
 
 list2 = SLinkedList()
-for x in [5, 6, 4]:
+for x in [5, 6, 4]:   # 465
     list2.agregar(x)
 
 resultado = add_numbers(list1, list2)
-
 print("Resultado:")
 print(resultado)
+# Esperado: 7 → 0 → 8 → None  (807)
+
+
+"""Caso 2"""
+print("\nCaso 2:")
+list3 = SLinkedList()
+for x in [9, 9, 9]:   # 999
+    list3.agregar(x)
+
+list4 = SLinkedList()
+for x in [1]:         # 1
+    list4.agregar(x)
+
+resultado = add_numbers(list3, list4)
+print("Resultado:")
+print(resultado)
+# Esperado: 0 → 0 → 0 → 1 → None  (1000)
+
+
+"""Caso 3"""
+print("\nCaso 3:")
+list5 = SLinkedList()
+for x in [0]:
+    list5.agregar(x)
+
+list6 = SLinkedList()
+for x in [0]:
+    list6.agregar(x)
+
+resultado = add_numbers(list5, list6)
+print("Resultado:")
+print(resultado)
+# Esperado: 0 → None
 
 
 
@@ -1793,7 +2040,7 @@ def get_intersection_node(list1, list2):
     p2 = list2.head
 
     """
-    1️⃣ Alinear los punteros de inicio.
+    Alinear los punteros de inicio.
     Se avanza en la lista más larga para que ambas
     tengan la misma cantidad de nodos restantes.
     """
@@ -1805,7 +2052,7 @@ def get_intersection_node(list1, list2):
             p2 = p2.next
 
     """
-    2️⃣ Avanzar simultáneamente ambas listas.
+    Avanzar simultáneamente ambas listas.
     Se compara la referencia de los nodos (no el valor).
     """
     while p1 and p2:
@@ -1817,11 +2064,12 @@ def get_intersection_node(list1, list2):
     return None
 
 
-# ---------------- CASO DE PRUEBA ----------------
+print("\n================ EJERCICIO 15 ================\n")
 
-"""
-Creación de nodos compartidos (zona de intersección)
-"""
+"""Caso 1"""
+print("Caso 1: Listas con intersección")
+
+# Nodos compartidos
 n7 = Nodo(7)
 n8 = Nodo(8)
 n9 = Nodo(9)
@@ -1829,31 +2077,56 @@ n9 = Nodo(9)
 n7.next = n8
 n8.next = n9
 
-
-"""
-Lista 1: 1 → 2 → 3 → 7 → 8 → 9
-"""
+# Lista 1: 1 → 2 → 3 → 7 → 8 → 9
 list1 = SLinkedList()
 list1.head = Nodo(1)
 list1.head.next = Nodo(2)
 list1.head.next.next = Nodo(3)
 list1.head.next.next.next = n7
 
-
-"""
-Lista 2: 4 → 5 → 6 → 7 → 8 → 9
-"""
+# Lista 2: 4 → 5 → 6 → 7 → 8 → 9
 list2 = SLinkedList()
 list2.head = Nodo(4)
 list2.head.next = Nodo(5)
 list2.head.next.next = Nodo(6)
 list2.head.next.next.next = n7
 
-
-"""
-Búsqueda del nodo de intersección
-"""
 interseccion = get_intersection_node(list1, list2)
+
+if interseccion:
+    print("Nodo de intersección:", interseccion.dato)
+else:
+    print("No hay intersección")
+
+
+"""Caso 2"""
+print("\nCaso 2: Listas sin intersección")
+
+list3 = SLinkedList()
+for x in [1, 2, 3]:
+    list3.agregar(x)
+
+list4 = SLinkedList()
+for x in [4, 5, 6]:
+    list4.agregar(x)
+
+interseccion = get_intersection_node(list3, list4)
+
+if interseccion:
+    print("Nodo de intersección:", interseccion.dato)
+else:
+    print("No hay intersección")
+
+
+"""Caso 3"""
+print("\nCaso 3: Una lista vacía")
+
+list5 = SLinkedList()
+list6 = SLinkedList()
+list6.agregar(1)
+list6.agregar(2)
+
+interseccion = get_intersection_node(list5, list6)
 
 if interseccion:
     print("Nodo de intersección:", interseccion.dato)
@@ -1961,15 +2234,50 @@ class BrowserHistory:
         return self.current.url
 
 
-# ---------------- CASO DE PRUEBA ----------------
+print("\n================ EJERCICIO 16 ================\n")
+
+"""Caso 1"""
+print("Caso 1: Navegación básica")
 
 browser = BrowserHistory("google.com")
 
 browser.visit("youtube.com")
 browser.visit("facebook.com")
-browser.back(1)    
-browser.forward(1) 
-print(browser.get_current())  
+browser.back(1)
+browser.forward(1)
+
+print("Página actual:", browser.get_current())
+
+
+"""Caso 2"""
+print("\nCaso 2: Retroceder más pasos de los disponibles")
+
+browser = BrowserHistory("inicio.com")
+
+browser.visit("pagina1.com")
+browser.visit("pagina2.com")
+browser.visit("pagina3.com")
+
+browser.back(10)   # intenta retroceder más de lo posible
+
+print("Página actual:", browser.get_current())
+
+
+"""Caso 3"""
+print("\nCaso 3: Eliminar historial futuro al visitar nueva página")
+
+browser = BrowserHistory("home.com")
+
+browser.visit("a.com")
+browser.visit("b.com")
+browser.visit("c.com")
+
+browser.back(2)     # vuelve a a.com
+browser.visit("nueva.com")  # elimina historial futuro
+
+browser.forward(1)  # no debería avanzar
+
+print("Página actual:", browser.get_current())
 
 
 
@@ -2098,21 +2406,38 @@ class LRUCache:
             self._add_to_end(nuevo)
 
 
-# ---------------- CASO DE PRUEBA ----------------
+print("\n================ EJERCICIO 17 ================\n")
+
+"""Caso 1"""
+print("Caso 1: Operaciones básicas")
 
 cache = LRUCache(2)
 
 cache.put(1, 10)
 cache.put(2, 20)
 
-print(cache.get(1))  
+print("get(1):", cache.get(1))   # 10
 
-cache.put(3, 30)      
 
-print(cache.get(2))   
-print(cache.get(3))   
-print(cache.get(1))   
+"""Caso 2"""
+print("\nCaso 2: Eliminación del menos usado (LRU)")
 
+cache.put(3, 30)   # elimina la clave 2
+
+print("get(2):", cache.get(2))   # -1
+print("get(3):", cache.get(3))   # 30
+
+
+"""Caso 3"""
+print("\nCaso 3: Actualización y prioridad de uso")
+
+cache.put(1, 100)  # actualiza valor y lo marca como MRU
+cache.put(4, 40)   # elimina el LRU
+
+print("get(1):", cache.get(1))   # 100
+print("get(3):", cache.get(3))   # -1
+print("get(4):", cache.get(4))   # 40
+ 
 
 
 """
@@ -2278,9 +2603,12 @@ class MultiCursorEditor:
         self.undo_stack.append(action)
 
 
-# ---------------- CASO DE PRUEBA ----------------
+print("\n================ EJERCICIO 18 ================\n")
 
 editor = MultiCursorEditor()
+
+"""Caso 1: Inserción con múltiples cursores"""
+print("Caso 1: Escritura con dos cursores")
 
 c1 = editor.add_cursor(0)
 c2 = editor.add_cursor(0)
@@ -2288,14 +2616,22 @@ c2 = editor.add_cursor(0)
 editor.type_at_cursor(c1, "Hola")
 editor.type_at_cursor(c2, "Hey ")
 
-print(editor.document)   
+print("Documento:", editor.document)   # Esperado: "Hey Hola"
+
+
+"""Caso 2: Undo de la última acción"""
+print("\nCaso 2: Undo")
 
 editor.undo_all()
-print(editor.document)   
+print("Documento:", editor.document)   # Esperado: "Hola"
+
+
+"""Caso 3: Redo de la acción deshecha"""
+print("\nCaso 3: Redo")
 
 editor.redo_all()
-print(editor.document)   
-
+print("Documento:", editor.document)   # Esperado: "Hey Hola"
+ 
 
 
 """
@@ -2481,6 +2817,14 @@ def benchmark():
     - Lista simplemente enlazada
     - Lista doblemente enlazada
     """
+    
+    print("\n================ EJERCICIO 19 ================\n")
+    print("Comparación de rendimiento entre:")
+    print("1) Array (list de Python)")
+    print("2) Lista Simplemente Enlazada (SLL)")
+    print("3) Lista Doblemente Enlazada (DLL)")
+
+
     N = 1000
     indices = [random.randint(0, N - 1) for _ in range(N)]
     results = {}
